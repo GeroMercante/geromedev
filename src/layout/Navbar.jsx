@@ -1,55 +1,86 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/actions/login";
 
 // Icons
-import { BiUser, BiLogIn } from "react-icons/bi";
+import { BiUser, BiLogIn, BiLogOut } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast.success("Se ha cerra la sesión");
+  };
   return (
     <NavbarContainer>
       <HeaderNav>
-        <div className="btn-nav">
-          <Link to="/login">
-            <h3>
-              <BiLogIn />
-              Login
+        <motion.div
+          className="btn-nav"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
+        >
+          {user ? (
+            <h3 onClick={handleLogout} className="btn-logout">
+              <BiLogOut /> Cerrar sesión
             </h3>
-          </Link>
-        </div>
+          ) : (
+            <Link to="/login">
+              <h3>
+                <BiLogIn />
+                Login
+              </h3>
+            </Link>
+          )}
+        </motion.div>
         <div className="mid-nav">
           <ul>
             <li>
               <Link to="/">Inicio</Link>
             </li>
             <li>
-              <Link to="/sobre-nosotros">Sobre nosotros</Link>
+              <Link to="/novedades">Novedades</Link>
             </li>
             <li>
               <Link to="/servicios">Servicios</Link>
             </li>
             <li>
-              <h1>W</h1>
+              <Link to="/">
+                <h1>W</h1>
+              </Link>
             </li>
             <li>
-              <Link to="/">Marketing</Link>
+              <Link to="/">Diseño</Link>
             </li>
             <li>
-              <Link to="/">Soluciones</Link>
+              <Link to="/sobre-nosotros">Sobre nosotros</Link>
             </li>
             <li>
               <Link to="/registro">Registrarse</Link>
             </li>
           </ul>
         </div>
-        <div className="btn-nav">
-          <Link to="/profile">
-            <h3>
-              <BiUser />
-              Perfil
-            </h3>
-          </Link>
-        </div>
+        <motion.div
+          className="btn-nav"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
+        >
+          {user ? (
+            <Link to="/perfil">
+              <h3>
+                <BiUser />
+                Perfil
+              </h3>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+        </motion.div>
       </HeaderNav>
     </NavbarContainer>
   );
@@ -57,7 +88,7 @@ const Navbar = () => {
 
 const NavbarContainer = styled.div`
   width: 100vw;
-  position: fixed;
+  position: relative;
   height: 100px;
   background: #296df4;
   top: 0;
@@ -73,6 +104,21 @@ const HeaderNav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .btn-logout {
+    cursor: pointer;
+    display: flex;
+    gap: 11px;
+    font-size: 15px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    justify-content: center;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 11px 17px;
+    border-radius: 66px;
+    text-transform: uppercase;
+  }
 
   .btn-nav {
     a {
@@ -109,6 +155,7 @@ const HeaderNav = styled.div`
           padding: 11px 15px;
           border-radius: 50%;
           border: 3px solid rgba(255, 255, 255, 0.5);
+          cursor: pointer;
         }
         a {
           text-decoration: none;
@@ -117,7 +164,7 @@ const HeaderNav = styled.div`
           text-transform: uppercase;
           transition: 150ms;
           :hover {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid #fff;
           }
         }
       }

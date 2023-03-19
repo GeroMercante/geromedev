@@ -51,7 +51,7 @@ const Footer = () => {
 };
 
 const FooterContain = styled.div`
-  margin-top: 30rem;
+  /* margin-top: 30rem; */
   height: 35vh;
   width: 100vw;
   display: flex;

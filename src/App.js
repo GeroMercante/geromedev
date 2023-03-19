@@ -9,9 +9,14 @@ import {
   Login,
   Register,
   Service,
+  Novedades,
+  Perfil,
+  Admin,
 } from "./pages/";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -27,9 +32,25 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Register />} />
             <Route path="/servicios" element={<Service />} />
+            <Route path="/novedades" element={<Novedades />} />
+            <Route path="/perfil" element={<Perfil />} />
+            {/* Ruta protegida */}
+            <Route path="/admin" element={<Admin />} />
           </Routes>
           <Footer />
         </Router>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </Provider>
     </>
   );
