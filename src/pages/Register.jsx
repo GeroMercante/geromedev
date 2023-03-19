@@ -7,7 +7,9 @@ import {
 import styled from "styled-components";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import BgLeft from "../assets/bg-left.png";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -31,26 +33,30 @@ const Register = () => {
 
   return (
     <Container>
+      <SectionDS></SectionDS>
       <BoxModal>
-        <h3>Registrarse</h3>
+        <h3>Crear nueva cuenta</h3>
         <form onSubmit={handleEmailSignUp}>
+          <label htmlFor="name">Nombre y apellido</label>
           <input
             type="text"
+            id="name"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            placeholder="Nombre y Apellido"
           />
+          <label htmlFor="email">Email</label>
           <input
             type="email"
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Correo electrónico"
           />
+          <label htmlFor="password">Contraseña</label>
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Contraseña"
           />
           <button type="submit" className="btn-submit">
             Registrarse
@@ -60,6 +66,9 @@ const Register = () => {
           <AiOutlineGoogle />
           Iniciar sesión con Google
         </button>
+        <h5>
+          ¿Ya tienes una cuenta? <Link to="/">Inicia sesión</Link>
+        </h5>
       </BoxModal>
     </Container>
   );
@@ -67,53 +76,78 @@ const Register = () => {
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 90vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   background: #f3f3f3;
 `;
 
+const SectionDS = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url(${BgLeft});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
 const BoxModal = styled.div`
-  width: 50%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   background: white;
-  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   position: relative;
-  box-shadow: 2px 3px 2px 3px rgba(0, 0, 0, 0.5);
 
   h3 {
-    position: absolute;
-    top: 5%;
-    font-size: 40px;
-    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  h5 {
+    font-size: 17px;
+    a {
+      text-decoration: none;
+      color: #296df4;
+      border-bottom: 1px solid #296df4;
+    }
   }
 
   form {
     display: flex;
     flex-direction: column;
-    gap: 1.3rem;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    label {
+      margin: 0;
+      padding: 0;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      font-size: 17px;
+    }
     input {
-      width: 100%;
+      width: 83%;
       border: none;
+      margin-bottom: 2rem;
       outline: none;
       border-bottom: 1px solid #000;
       font-size: 21px;
-      padding: 11px 22px;
+      padding: 7px 21px;
       :focus {
-        outline: 1px solid #000;
+        border-bottom: 2px solid #000;
       }
     }
 
     .btn-submit {
+      width: 100%;
       background: #296df4;
       color: #fff;
       font-size: 21px;
-      padding: 11px 21px;
+      padding: 11px 23px;
       border-radius: 16px;
       border: none;
       outline: none;
@@ -126,8 +160,7 @@ const BoxModal = styled.div`
     }
   }
   .btn-google {
-    position: absolute;
-    bottom: 16%;
+    margin-top: 2rem;
     background: #f00;
     color: #fff;
     font-size: 21px;

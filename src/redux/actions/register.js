@@ -40,6 +40,10 @@ export const registerWithEmail = ({ name, email, password }) => {
           isAdmin: false,
         });
 
+        result.user.getIdToken().then((token) => {
+          localStorage.setItem("token", token);
+        });
+
         dispatch({
           type: LOGIN,
           payload: result.user,

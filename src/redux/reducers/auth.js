@@ -3,7 +3,7 @@ import { LOGIN, LOGIN_FAIL, LOGOUT, LOGOUT_FAIL } from "../types";
 
 const initialState = {
   user: null,
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem("token") ? true : false,
   isLoading: true,
 };
 
@@ -24,6 +24,7 @@ export default function authReducer(state = initialState, action) {
         isLoading: false,
       };
     case LOGOUT:
+      localStorage.removeItem("token");
       return {
         ...state,
         user: null,

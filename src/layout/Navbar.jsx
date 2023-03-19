@@ -19,6 +19,7 @@ const Navbar = () => {
   };
   return (
     <NavbarContainer>
+      <Correction></Correction>
       <HeaderNav>
         <motion.div
           className="btn-nav"
@@ -87,7 +88,7 @@ const Navbar = () => {
 };
 
 const NavbarContainer = styled.div`
-  width: 100vw;
+  width: 98vw;
   position: relative;
   height: 100px;
   background: #296df4;
@@ -98,6 +99,17 @@ const NavbarContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const Correction = styled.div`
+  background: #296df4;
+  z-index: -1;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -350px;
+  width: 100vw;
+`;
+
 const HeaderNav = styled.div`
   height: 100%;
   width: 90%;
