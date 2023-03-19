@@ -11,6 +11,7 @@ import {
   Service,
 } from "./pages/";
 import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/registro" element={<Register />} />
             <Route path="/servicios" element={<Service />} />
           </Routes>
+          <Footer />
         </Router>
       </Provider>
     </>
