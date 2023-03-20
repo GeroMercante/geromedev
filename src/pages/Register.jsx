@@ -67,7 +67,7 @@ const Register = () => {
           Iniciar sesión con Google
         </button>
         <h5>
-          ¿Ya tienes una cuenta? <Link to="/">Inicia sesión</Link>
+          ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
         </h5>
       </BoxModal>
     </Container>
