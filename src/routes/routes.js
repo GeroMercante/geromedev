@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import Footer from "../layout/Footer";
@@ -16,8 +16,23 @@ import {
 } from "../pages";
 import PrivateRoute from "./privateRoute";
 import AdminRoute from "./adminRoute";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "../redux/types";
 
 const AppRoutes = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const storedAuth = JSON.parse(localStorage.getItem("auth"));
+    if (storedAuth) {
+      dispatch({
+        type: LOGIN,
+        payload: storedAuth,
+      });
+    }
+  }, [dispatch]);
+
+
   return (
     <Router>
       <Navbar />

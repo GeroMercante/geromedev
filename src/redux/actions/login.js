@@ -17,6 +17,11 @@ export const login = (email, password) => async (dispatch) => {
         isAdmin: isAdmin,
       },
     });
+
+    localStorage.setItem(
+      "auth",
+      JSON.stringify({ uid: user.uid, email: user.email, isAdmin: isAdmin })
+    );
   } catch (error) {
     console.error(error);
     dispatch({
@@ -27,6 +32,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
+    localStorage.removeItem("auth");
     await signOut(auth);
     dispatch({
       type: LOGOUT,

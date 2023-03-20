@@ -2,26 +2,26 @@ export const categories = [
   {
     id: 1,
     name: "Tecnología",
-    urlParamName: "tecnologia",
+    urlParamName: "Tecnología",
   },
   {
     id: 2,
     name: "Marketing",
-    urlParamName: "marketing",
+    urlParamName: "Marketing",
   },
   {
     id: 3,
     name: "Consultoría",
-    urlParamName: "consultoria",
+    urlParamName: "Consultoría",
   },
   {
     id: 4,
     name: "Diseño",
-    urlParamName: "diseno",
+    urlParamName: "Diseño",
   },
   {
     id: 5,
     name: "Desarrollo",
-    urlParamName: "desarrollo",
+    urlParamName: "Desarrollo",
   },
 ];
