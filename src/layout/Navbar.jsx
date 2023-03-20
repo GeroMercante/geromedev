@@ -79,7 +79,12 @@ const Navbar = () => {
               </h3>
             </Link>
           ) : (
-            <div></div>
+            <div>
+              <h3 className="opacity">
+                <BiUser />
+                Perfil
+              </h3>
+            </div>
           )}
         </motion.div>
       </HeaderNav>
@@ -135,6 +140,9 @@ const HeaderNav = styled.div`
   .btn-nav {
     a {
       text-decoration: none;
+    }
+    .opacity {
+      opacity: 0;
     }
     h3 {
       display: flex;
