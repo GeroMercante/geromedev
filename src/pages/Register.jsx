@@ -6,7 +6,6 @@ import {
 } from "../redux/actions/register";
 import styled from "styled-components";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 import BgLeft from "../assets/bg-left.png";
@@ -20,14 +19,12 @@ const Register = () => {
 
   const handleGoogleSignIn = () => {
     dispatch(registerWithGoogle());
-    toast.success("Has iniciado sesión");
     navigate("/");
   };
 
   const handleEmailSignUp = (e) => {
     e.preventDefault();
-    dispatch(registerWithEmail({ name: displayName, email, password }));
-    toast.success("Has iniciado sesión");
+    dispatch(registerWithEmail({ name: displayName, email, password, displayName }));
     navigate("/");
   };
 

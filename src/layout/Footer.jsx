@@ -29,7 +29,7 @@ const Footer = () => {
               <Link to="/contacto">Contacto</Link>
             </li>
             <li>
-              <Link to="/sobre-nosotros">Sobre nosotros</Link>
+              <Link to="/servicios">Servicios</Link>
             </li>
             <li>
               <Link>Politicas de privacidad</Link>

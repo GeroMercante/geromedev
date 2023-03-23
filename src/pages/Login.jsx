@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import styled from "styled-components";
 import { login } from "../redux/actions/login";
 import { registerWithGoogle } from "../redux/actions/register";
@@ -17,12 +16,10 @@ const Login = () => {
     e.preventDefault();
     dispatch(login(email, password));
     navigate("/");
-    toast.success("Has iniciado sesión");
   };
 
   const handleGoogleSignIn = () => {
     dispatch(registerWithGoogle());
-    toast.success("Has iniciado sesión");
     navigate("/");
   };
 

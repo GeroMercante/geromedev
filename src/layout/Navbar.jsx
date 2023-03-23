@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -7,16 +7,22 @@ import { logout } from "../redux/actions/login";
 
 // Icons
 import { BiUser, BiLogIn, BiLogOut } from "react-icons/bi";
-import { toast } from "react-toastify";
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleLogout = () => {
     dispatch(logout());
-    toast.success("Se ha cerra la sesión");
   };
+
+  function pathMathRoute(route) {
+    if (route === location.pathname) {
+      return true;
+    }
+  }
+
   return (
     <NavbarContainer>
       <Correction></Correction>
@@ -42,27 +48,57 @@ const Navbar = () => {
         <div className="mid-nav">
           <ul>
             <li>
-              <Link to="/">Inicio</Link>
-            </li>
-            <li>
-              <Link to="/novedades">Novedades</Link>
-            </li>
-            <li>
-              <Link to="/servicios">Servicios</Link>
-            </li>
-            <li>
-              <Link to="/">
-                <h1>W</h1>
+              <Link
+                to="/"
+                className={`${pathMathRoute("/") && "border-bottom"}`}
+              >
+                Inicio
               </Link>
             </li>
             <li>
-              <Link to="/">Diseño</Link>
+              <Link
+                to="/novedades"
+                className={`${pathMathRoute("/novedades") && "border-bottom"}`}
+              >
+                Novedades
+              </Link>
             </li>
             <li>
-              <Link to="/sobre-nosotros">Sobre nosotros</Link>
+              <Link
+                to="/servicios"
+                className={`${pathMathRoute("/servicios") && "border-bottom"}`}
+              >
+                Servicios
+              </Link>
             </li>
             <li>
-              <Link to="/registro">Registrarse</Link>
+              <Link to="/">
+                <h1>G</h1>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/desarrollo"
+                className={`${pathMathRoute("/desarrollo") && "border-bottom"}`}
+              >
+                Desarrollo
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contacto"
+                className={`${pathMathRoute("/contacto") && "border-bottom"}`}
+              >
+                Contacto
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/registro"
+                className={`${pathMathRoute("/registro") && "border-bottom"}`}
+              >
+                Registrarse
+              </Link>
             </li>
           </ul>
         </div>
@@ -165,6 +201,9 @@ const HeaderNav = styled.div`
       justify-content: center;
       align-items: center;
       text-align: center;
+      .border-bottom {
+        border-bottom: 2px solid #fff;
+      }
       li {
         list-style: none;
         margin: 0 20px;
@@ -176,15 +215,21 @@ const HeaderNav = styled.div`
           border-radius: 50%;
           border: 3px solid rgba(255, 255, 255, 0.5);
           cursor: pointer;
+          font-family: Georgia, "Times New Roman", Times, serif;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         a {
           text-decoration: none;
           color: #fff;
-          font-size: 15px;
+          font-size: 16px;
+          padding-bottom: 3px;
           text-transform: uppercase;
           transition: 150ms;
           :hover {
-            border-bottom: 1px solid #fff;
+            color: #dcdcdc;
           }
         }
       }
